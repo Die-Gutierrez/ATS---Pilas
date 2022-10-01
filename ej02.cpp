@@ -14,6 +14,7 @@ struct Nodo
 };
 
 void agregarPila(Nodo *&, char []);
+void quitarPila(Nodo *&pila, char letra[]);
 
 using namespace std;
 
@@ -25,28 +26,56 @@ int main()
 
     do
     {
-        cout<<"BIENVENIDO"<<endl;
-        cout<<"Menu"<<endl;
+        system("cls");
+        cout<<"\n\t\tM-E-N-U"<<endl;
+        cout<<"*******************************************"<<endl;
         cout<<"1. Insertar un caracter a la pila"<<endl;
         cout<<"2. Mostrar todos los elementos de la pila"<<endl;
         cout<<"3. Salir"<<endl;
-        cout<<"Elija su opcion: ";
+        cout<<"*******************************************"<<endl;
+        cout<<"Elija una opcion: ";
         cin>>op;
         switch (op)
         {
         case 1:
+            system("cls");
+            cout<<"\tLEA ATENTAMENTE . . ."<<endl<<endl;
+            cout<<"*******************************************"<<endl;
             cout<<"Inserte UN SOLO caracter: ";
             fflush(stdin); cin.getline(letra,2,'\n');
             agregarPila(pila, letra);
+            cout<<"*******************************************"<<endl;
+            system("pause");
             break;
         case 2:
-            
+            system("Pause");
+            system("cls");
+            cout<<"Todos los elementos de la pila son: ";
+            while(pila != NULL)
+            {
+                quitarPila(pila, letra);
+                if(pila != NULL)
+                {
+                    cout<<letra<<", ";
+                }
+                else
+                {
+                    cout<<letra<<". ";
+                }
+            }
+            cout<<endl<<endl;
+            system("pause");
             break;
         case 3:
-            cout<<"\nGracias por vuestra preferencia"<<endl;
+            system("cls");
+            cout<<"\n\n\n*** Gracias por vuestra preferencia ***"<<endl<<endl<<endl;
+            system("pause");
+            system("cls");
             break;
         default:
-            cout<<"Elija una opcion del Menu . . ."<<endl;
+            system("cls");
+            cout<<"\n\nElija una opcion del Menu . . .\n\n"<<endl;
+            system("pause");
             break;
         }
     } while (op != 3);
@@ -59,5 +88,12 @@ void agregarPila(Nodo *&pila, char letra[])
     strcpy(nuevo_nodo->carac, letra);
     nuevo_nodo->siguiente = pila;
     pila = nuevo_nodo;
-    cout<<"El caracter '"<<nuevo_nodo->carac<<"' fue agregado exitosamente . . ."<<endl<<endl;
+    cout<<"\nEl caracter '"<<nuevo_nodo->carac<<"' fue agregado exitosamente . . ."<<endl<<endl;
+}
+void quitarPila(Nodo *&pila, char letra[])
+{
+    Nodo *aux = pila;
+    strcpy(letra, aux->carac);
+    pila = aux->siguiente;
+    delete aux; 
 }
